@@ -96,8 +96,7 @@ void CellStates<L>::initializeFromGrid(L& lattice, int nrOfCells) {
     for (int i = 0; i < nrOfCells; i++) {
         _areas.push_back(0);
         _perimeters.push_back(0);
-        //TODO: don't assume all cells in grid are cell type 1
-        _types.push_back(1);
+        _types.push_back(0);
     }
 
     auto size = lattice.size();
@@ -105,7 +104,8 @@ void CellStates<L>::initializeFromGrid(L& lattice, int nrOfCells) {
         auto c = lattice.getPoint(i);
         if (c.cellId != 0) {
             _areas[c.cellId-1]++;
-        } 
+            _types[c.cellId-1] = c.type;
+        }
 
         std::vector<int> neighbors;
         for (int l = 0; l < lattice.getNeighborCount(); l++) {
