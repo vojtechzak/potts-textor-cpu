@@ -27,8 +27,8 @@ static PyModuleDef cpmmodule = {
 static int PyCpm2d_init(PyCpm2d *self, PyObject* args, PyObject* kwds) {
     int dimension;
     int numberOfTypes;
-    int temperature;
-    if (! PyArg_ParseTuple(args, "iii", &dimension, &numberOfTypes, &temperature))
+    double temperature;
+    if (! PyArg_ParseTuple(args, "iid", &dimension, &numberOfTypes, &temperature))
         return -1;
 
     self->ptrObj = new Cpm<Lattice2d>(dimension, numberOfTypes, temperature);
@@ -50,8 +50,8 @@ static PyTypeObject PyCpm2dType = { PyVarObject_HEAD_INIT(NULL, 0)
 static int PyCpm3d_init(PyCpm3d *self, PyObject* args, PyObject* kwds) {
     int dimension;
     int numberOfTypes;
-    int temperature;
-    if (! PyArg_ParseTuple(args, "iii", &dimension, &numberOfTypes, &temperature))
+    double temperature;
+    if (! PyArg_ParseTuple(args, "iid", &dimension, &numberOfTypes, &temperature))
         return -1;
 
     self->ptrObj = new Cpm<Lattice3d>(dimension, numberOfTypes, temperature);
