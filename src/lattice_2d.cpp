@@ -144,8 +144,8 @@ LatticePoint Lattice2d::getNeighbor(int x, int y, int i) {
     const int directions[8][2] = {{-1,1}, {0,1}, {1,1}, {1,0}, {1,-1},
         {0,-1}, {-1,-1}, {-1,0}};
     auto offset = directions[i];
-    int nX = (x + offset[0] ) & (_dimension-1);
-    int nY = (y + offset[1] ) & (_dimension-1);
+    int nX = (x + offset[0] + _dimension) % _dimension;
+    int nY = (y + offset[1] + _dimension) % _dimension;
     return getPoint(nX,nY);
 }
 

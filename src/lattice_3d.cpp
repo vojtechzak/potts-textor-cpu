@@ -146,9 +146,9 @@ LatticePoint Lattice3d::getNeighbor(int x, int y, int z, int i) {
         {0,1,-1}, {1,1,-1}, {1,0,-1}, {1,-1,-1}, {0,-1,-1}, {-1,-1,-1}, 
         {-1,0,-1}, {0,0,-1}};
     auto offset = directions[i];
-    int nX = (x + offset[0] ) & (_dimension-1);
-    int nY = (y + offset[1] ) & (_dimension-1);
-    int nZ = (z + offset[2] ) & (_dimension-1);
+    int nX = (x + offset[0] + _dimension) % _dimension;
+    int nY = (y + offset[1] + _dimension) % _dimension;
+    int nZ = (z + offset[2] + _dimension) % _dimension;
     return getPoint(nX,nY,nZ);
 }
 
