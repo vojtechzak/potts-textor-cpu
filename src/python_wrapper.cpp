@@ -425,7 +425,7 @@ static PyObject * PyCpm2d_getCentroids(PyCpm2d* self, PyObject* args)
     auto centroids = (self->ptrObj)->getCentroids();
 
     npy_intp const dims[2] = {int(centroids.size()), 2};
-    PyArrayObject* output = (PyArrayObject*) PyArray_SimpleNew(2, dims, PyArray_DOUBLE);
+    PyArrayObject* output = (PyArrayObject*) PyArray_SimpleNew(2, dims, NPY_DOUBLE);
     if (!output) 
         return 0;
     double* data = (double*)output->data;
@@ -441,7 +441,7 @@ static PyObject * PyCpm3d_getCentroids(PyCpm3d* self, PyObject* args)
     auto centroids = (self->ptrObj)->getCentroids();
 
     npy_intp const dims[2] = {int(centroids.size()), 3};
-    PyArrayObject* output = (PyArrayObject*) PyArray_SimpleNew(2, dims, PyArray_DOUBLE);
+    PyArrayObject* output = (PyArrayObject*) PyArray_SimpleNew(2, dims, NPY_DOUBLE);
     if (!output) 
         return 0;
     double* data = (double*)output->data;
@@ -455,7 +455,7 @@ static PyObject * PyCpm3d_getCentroids(PyCpm3d* self, PyObject* args)
 
 static PyObject * PyCpm2d_overwriteCell(PyCpm2d* self, PyObject* args)
 {
-    PyObject *arg=NULL;
+    PyArrayObject *arg=NULL;
     int type;
     if (!PyArg_ParseTuple(args, "Oi", &arg, &type)) return NULL;
     int dims = PyArray_NDIM(arg);
@@ -479,7 +479,7 @@ static PyObject * PyCpm2d_overwriteCell(PyCpm2d* self, PyObject* args)
 
 static PyObject * PyCpm3d_overwriteCell(PyCpm3d* self, PyObject* args)
 {
-    PyObject *arg=NULL;
+    PyArrayObject *arg=NULL;
     int type;
     if (!PyArg_ParseTuple(args, "Oi", &arg, &type)) return NULL;
     int dims = PyArray_NDIM(arg);
@@ -503,7 +503,7 @@ static PyObject * PyCpm3d_overwriteCell(PyCpm3d* self, PyObject* args)
 
 static PyObject * PyCpm2d_initializeFromArray(PyCpm2d* self, PyObject* args)
 {
-    PyObject *arg=NULL;
+    PyArrayObject *arg=NULL;
     int count;
     if (!PyArg_ParseTuple(args, "Oi", &arg, &count)) return NULL;
     int dims = PyArray_NDIM(arg);
@@ -531,7 +531,7 @@ static PyObject * PyCpm2d_initializeFromArray(PyCpm2d* self, PyObject* args)
 
 static PyObject * PyCpm3d_initializeFromArray(PyCpm3d* self, PyObject* args)
 {
-    PyObject *arg=NULL;
+    PyArrayObject *arg=NULL;
     int count;
     if (!PyArg_ParseTuple(args, "Oi", &arg, &count)) return NULL;
     int dims = PyArray_NDIM(arg);
